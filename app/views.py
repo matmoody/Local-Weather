@@ -1,8 +1,9 @@
 from flask import render_template
 from app import app
 import forecastio
+from keys import api_key
 
-api_key = "59053df436eaca0f50ee87db0b80dbff"
+
 lat = 38.8242
 lng = -97.6072
 

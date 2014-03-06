@@ -35,27 +35,7 @@
 		  <div class="row">
 		      <div class="col-md-1">
 		        <h5>Right Now:</h5>
-		        {% if now.icon == "clear-day" %}
-		      	  <canvas id="clear-day" width="128" height="128"></canvas>
-		      	{% elif now.icon == "clear-night" %}
-		      	  <canvas id="clear-night" width="128" height="128"></canvas>
-		      	{% elif now.icon == "partly-cloudy-day" %}
-		      	  <canvas id="partly-cloudy-day" width="128" height="128"></canvas>
-		      	{% elif now.icon == "partly-cloudy-night" %}
-		      	  <canvas id="partly-cloudy-night" width="128" height="128"></canvas>
-		      	{% elif now.icon == "cloudy" %}
-		      	  <canvas id="cloudy" width="128" height="128"></canvas>
-		      	{% elif now.icon == "rain" %}
-		      	  <canvas id="rain" width="128" height="128"></canvas>
-		      	{% elif now.icon == "sleet" %}
-		      	  <canvas id="sleet" width="128" height="128"></canvas>
-		      	{% elif now.icon == "snow" %}
-		      	  <canvas id="snow" width="128" height="128"></canvas>
-		      	{% elif now.icon == "wind" %}
-		      	  <canvas id="wind" width="128" height="128"></canvas>
-		      	{% else %}
-		      	  <canvas id="fog" width="128" height="128"></canvas>
-		      	{% endif %}
+		        <canvas id="{{now.icon}}" width="128" height="128"></canvas>
 		      </div>
 		      <div class="col-md-3 col-md-offset-1">
 		        <h3>{{now.summary}}</h3>
@@ -66,27 +46,7 @@
 		  <div class="row">
 		  	<div class="col-md-1">
 		  		<h5>Forecast: {{ byHour.data[1].time.strftime('%H:%M') }}</h5>
-		  		{% if byHour.icon == "clear-day" %}
-		      	  <canvas id="clear-day" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "clear-night" %}
-		      	  <canvas id="clear-night" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "partly-cloudy-day" %}
-		      	  <canvas id="partly-cloudy-day" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "partly-cloudy-night" %}
-		      	  <canvas id="partly-cloudy-night" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "cloudy" %}
-		      	  <canvas id="cloudy" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "rain" %}
-		      	  <canvas id="rain" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "sleet" %}
-		      	  <canvas id="sleet" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "snow" %}
-		      	  <canvas id="snow" width="128" height="128"></canvas>
-		      	{% elif byHour.icon == "wind" %}
-		      	  <canvas id="wind" width="128" height="128"></canvas>
-		      	{% else %}
-		      	  <canvas id="fog" width="128" height="128"></canvas>
-		      	{% endif %}
+		  		<canvas id="{{byHour.icon}}" class="2" width="128" height="128"></canvas>
 		  	</div>
 		  	<div class="col-md-3 col-md-offset-1">
 		        <h3>{{byHour.summary}}</h3>

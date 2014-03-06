@@ -1,0 +1,24 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400);
+
+a.navbar-brand {
+	font-family: 'Lato', sans-serif;
+}
+
+.navbar-default {
+	background-color: #ffffff;
+}
+
+.row {
+    background: #ffffff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+body {
+	background: whitesmoke;
+}
+

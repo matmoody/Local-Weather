@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{title}} - Salina Weather</title>
+		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/static/css/styles.css" rel="stylesheet">
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="/static/js/bootstrap.min.js"></script>
+		<script src="/static/js/skycons.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Salina Post Weather</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li><a href="http://salinapost.com">News</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+		  <div class="row">
+		      <div class="col-md-1">
+		        <h5>Right Now:</h5>
+		        {% if now.icon == "clear-day" %}
+		      	  <canvas id="clear-day" width="128" height="128"></canvas>
+		      	{% elif now.icon == "clear-night" %}
+		      	  <canvas id="clear-night" width="128" height="128"></canvas>
+		      	{% elif now.icon == "partly-cloudy-day" %}
+		      	  <canvas id="partly-cloudy-day" width="128" height="128"></canvas>
+		      	{% elif now.icon == "partly-cloudy-night" %}
+		      	  <canvas id="partly-cloudy-night" width="128" height="128"></canvas>
+		      	{% elif now.icon == "cloudy" %}
+		      	  <canvas id="cloudy" width="128" height="128"></canvas>
+		      	{% elif now.icon == "rain" %}
+		      	  <canvas id="rain" width="128" height="128"></canvas>
+		      	{% elif now.icon == "sleet" %}
+		      	  <canvas id="sleet" width="128" height="128"></canvas>
+		      	{% elif now.icon == "snow" %}
+		      	  <canvas id="snow" width="128" height="128"></canvas>
+		      	{% elif now.icon == "wind" %}
+		      	  <canvas id="wind" width="128" height="128"></canvas>
+		      	{% else %}
+		      	  <canvas id="fog" width="128" height="128"></canvas>
+		      	{% endif %}
+		      </div>
+		      <div class="col-md-3 col-md-offset-1">
+		        <h3>{{now.summary}}</h3>
+		        <h5><strong>Temperature: </strong>{{now.temperature}}</h5>
+		        <p><strong>Precipication Probability: </strong>{{now.precipProbability}}</p>
+		      </div>
+		  </div>
+		  <div class="row">
+		  	<div class="col-md-1">
+		  		<h5>Next Hour:</h5>
+		  		{% if byHour.icon == "clear-day" %}
+		      	  <canvas id="clear-day" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "clear-night" %}
+		      	  <canvas id="clear-night" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "partly-cloudy-day" %}
+		      	  <canvas id="partly-cloudy-day" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "partly-cloudy-night" %}
+		      	  <canvas id="partly-cloudy-night" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "cloudy" %}
+		      	  <canvas id="cloudy" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "rain" %}
+		      	  <canvas id="rain" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "sleet" %}
+		      	  <canvas id="sleet" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "snow" %}
+		      	  <canvas id="snow" width="128" height="128"></canvas>
+		      	{% elif byHour.icon == "wind" %}
+		      	  <canvas id="wind" width="128" height="128"></canvas>
+		      	{% else %}
+		      	  <canvas id="fog" width="128" height="128"></canvas>
+		      	{% endif %}
+		  	</div>
+		  	<div class="col-md-3 col-md-offset-1">
+		        <h3>{{byHour.summary}}</h3>
+		        {% if byHour.icon == "sunny" %}
+		        <p>Yep</p>
+		        {% else %}
+		        <p>Nope</p>
+		        {% endif %}
+		    </div>
+		  </div>
+		</div>
+
+	<script>
+      var icons = new Skycons(),
+          list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+	</script>
+	</body>
+</html>

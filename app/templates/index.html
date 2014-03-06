@@ -65,7 +65,7 @@
 		  </div>
 		  <div class="row">
 		  	<div class="col-md-1">
-		  		<h5>Next Hour:</h5>
+		  		<h5>Forecast: {{ byHour.data[1].time.strftime('%H:%M') }}</h5>
 		  		{% if byHour.icon == "clear-day" %}
 		      	  <canvas id="clear-day" width="128" height="128"></canvas>
 		      	{% elif byHour.icon == "clear-night" %}

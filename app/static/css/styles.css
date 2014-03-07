@@ -8,17 +8,41 @@ a.navbar-brand {
 	background-color: #ffffff;
 }
 
-.row {
+.col-md-2.card {
     background: #ffffff;
+    height: 250px;
+    margin-left: 25px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; /* future proofing */
     -khtml-border-radius: 10px; /* for old Konqueror browsers */
     margin-top: 10px;
     padding-left: 10px;
+    -moz-box-shadow:    0 1px 1px #ccc;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    box-shadow:         0 1px 1px #ccc;
 }
 
 body {
 	background: whitesmoke;
+}
+
+.jumbotron {
+	background-color: #ffffff;
+	-moz-box-shadow:    0 1px 1px #ccc;
+    -webkit-box-shadow: 0 1px 1px #ccc;
+    box-shadow:         0 1px 1px #ccc;
+}
+
+p {
+	padding-top: 0;
+}
+
+h1.forecastIcon {
+	text-align: center;
+}
+
+h5.forecastDate {
+	text-align: center;
 }
 

@@ -4,8 +4,8 @@ import forecastio
 from keys import api_key
 
 
-lat = 38.8242
-lng = -97.6072
+lat = 38.840280
+lng = -97.611424
 
 
 

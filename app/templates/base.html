@@ -1,5 +1,8 @@
 {% extends "index.html" %}
 {% block content %}
+
+<!-- ////////////  Hourly Section /////////////// -->
+
 <div class="jumbotron">
     <div class="row">
       <h5>RIGHT NOW:</h5>
@@ -7,117 +10,306 @@
         <canvas id="{{now.icon}}" width="300" height="300"></canvas>
         <h5>{{now.summary}}</h4>
       </div>
-      <div class="col-md-5 col-md-offset-2">
+      <div class="col-md-4 col-md-offset-2">
         <h1><i class="wi-thermometer"></i> {{now.temperature| int()}}<i class="wi-fahrenheit"></i></h1>
         <p><strong>
-        <p><strong><i class="wi-thermometer-internal"></i> Dewpoint: </strong>{{now.dewPoint| int()}}<i class="wi-degrees"></i></p>
-        <p><strong><i class="wi-sprinkles"></i> Humidity: </strong>{{now.humidity}}%</p>
+        <p><strong><i class="wi-thermometer-internal"></i> Dewpoint: </strong>{{now.dewPoint| int()}}<i class="wi-fahrenheit"></i></p>
+        <p><strong><i class="wi-sprinkles"></i> Humidity: </strong>{{now.humidity * 100| int()}}%</p>
         <p><strong><i class="wi-windy"></i> Wind Speed: </strong>{{now.windspeed | int()}} mph</p>
         <p><strong><i class="wi-down"></i> Pressure: </strong>{{now.pressure}}</p>
         <p><strong>
 
       </div>
+      <div class="col-md-2" >
+        <iframe src="http://builder.zoomradar.net/zoomradar_weather_map/weather_page.php?w=320&h=320&z=09&lat=38.8402805&lng=-97.6114237" width="320" height="320"></iframe>
+      </div>
     </div>
 </div>
 
+<!-- ////////////  Hourly Section /////////////// -->
+
 <div class="row">
-  <h4>Forecast</h4>
+  <h4>Minutely</h4>
 </div>
 <div class="row">
 	<div class="col-md-2 card">
-		<h5 class="forecastDate">5 Minutes</h5>
+		<h5 class="forecastDate">In 5 Minutes</h5>
     <h1 class="forecastIcon">
-    {% if byMinute.icon == "clear-day" %}
-    <i class="wi-day-sunny"></i>
-    {% elif byMinute.icon == "rain" %}
+    {% if byMinute.data[5].precipIntensity >= 0.4 %}
+    <i class="wi-rain-wind"></i>
+    <h5>Heavy Precipitation<h5>
+    {% elif byMinute.data[5].precipIntensity >= 0.1 %}
     <i class="wi-rain"></i>
-    {% elif byMinute.icon == "snow" %}
-    <i class="wi-snow"></i>
-    {% elif byMinute.icon == "sleet" %}
-    <i class="wi-rain-mix"></i>
-    {% elif byMinute.icon == "wind" %}
-    <i class="wi-strong-wind"></i>
-    {% elif byMinute.icon == "fog" %}
-    <i class="wi-fog"></i>
-    {% elif byMinute.icon == "cloudy" %}
-    <i class="wi-cloudy"></i>
-    {% elif byMinute.icon == "partly-cloudy-day" %}
-    <i class="wi-day-cloudy"></i>
+    <h5>Moderate Precipitation</h5>
+    {% elif byMinute.data[5].precipIntensity >= 0.017 %}
+    <i class="wi-sprinkle"></i>
+    <h5>Light Precipitation</h5>
+    {% elif byMinute.data[5].precipIntensity >= 0.002 %}
+    <i class="wi-sprinkles"></i>
+    <h5>Very Light Precipitation</h5>
     {% else %}
     <i class="wi-cloud"></i>
+    <h5>No Precipitation</h5>
     {% endif %} </h1>
-    <p><small>{{byMinute.summary}}</small></p>
     <p><small>Precipitation Probability: {{byMinute.data[5].precipProbability}}</small></p>
     <p><small>Precipitation Intensity: {{byMinute.data[5].precipIntensity}}</small></p>
 
 	</div>
 
 	<div class="col-md-2 card">
-      <h5 class="forecastDate">Sunday</h5>
-        <h1 class="forecastIcon">
-        {% if day.data[5].icon == "clear-day" %}
-        <i class="wi-day-sunny"></i>
-        {% elif day.data[5].icon == "rain" %}
-        <i class="wi-rain"></i>
-        {% elif day.data[5].icon == "snow" %}
-        <i class="wi-snow"></i>
-        {% elif day.data[5].icon == "sleet" %}
-        <i class="wi-rain-mix"></i>
-        {% elif day.data[5].icon == "wind" %}
-        <i class="wi-strong-wind"></i>
-        {% elif day.data[5].icon == "fog" %}
-        <i class="wi-fog"></i>
-        {% elif day.data[5].icon == "cloudy" %}
-        <i class="wi-cloudy"></i>
-        {% elif day.data[5].icon == "partly-cloudy-day" %}
-        <i class="wi-day-cloudy"></i>
-        {% else %}
-        <i class="wi-cloud"></i>
-        {% endif %} </h1>
-      <p><small>{{day.data[5].summary}}</small></p>
-      <p><small>High: {{day.data[5].temperatureMax}}</small></p>
-      <p><small>Low: {{day.data[5].temperatureMin}}</small></p>
+      <h5 class="forecastDate">In 10 Minutes</h5>
+      <h1 class="forecastIcon">
+      {% if byMinute.data[10].precipIntensity >= 0.4 %}
+      <i class="wi-rain-wind"></i>
+      <h5>Heavy Precipitation<h5>
+      {% elif byMinute.data[10].precipIntensity >= 0.1 %}
+      <i class="wi-rain"></i>
+      <h5>Moderate Precipitation</h5>
+      {% elif byMinute.data[10].precipIntensity >= 0.017 %}
+      <i class="wi-sprinkle"></i>
+      <h5>Light Precipitation</h5>
+      {% elif byMinute.data[10].precipIntensity >= 0.002 %}
+      <i class="wi-sprinkles"></i>
+      <h5>Very Light Precipitation</h5>
+      {% else %}
+      <i class="wi-cloud"></i>
+      <h5>No Precipitation</h5>
+      {% endif %} </h1>
+      <p><small>Precipitation Probability: {{byMinute.data[10].precipProbability}}</small></p>
+      <p><small>Precipitation Intensity: {{byMinute.data[10].precipIntensity}}</small></p>
   </div>
   <div class="col-md-2 card">
-      <h5 class="forecastDate">Monday</h5>
-        <h1 class="forecastIcon">
-        {% if day.data[7].icon == "clear-day" %}
-        <i class="wi-day-sunny"></i>
-        {% elif day.data[7].icon == "rain" %}
-        <i class="wi-rain"></i>
-        {% elif day.data[7].icon == "snow" %}
-        <i class="wi-snow"></i>
-        {% elif day.data[7].icon == "sleet" %}
-        <i class="wi-rain-mix"></i>
-        {% elif day.data[7].icon == "wind" %}
-        <i class="wi-strong-wind"></i>
-        {% elif day.data[7].icon == "fog" %}
-        <i class="wi-fog"></i>
-        {% elif day.data[7].icon == "cloudy" %}
-        <i class="wi-cloudy"></i>
-        {% elif day.data[7].icon == "partly-cloudy-day" %}
-        <i class="wi-day-cloudy"></i>
-        {% else %}
-        <i class="wi-cloud"></i>
-        {% endif %} </h1>
-      <p><strong>{{day.data[7].summary}}</strong></p>
-      <p><strong>High: {{day.data[7].temperatureMax}}</strong></p>
-      <p><strong>Low: {{day.data[7].temperatureMin}}</strong></p>
+      <h5 class="forecastDate">In 15 Minutes</h5>
+      <h1 class="forecastIcon">
+      {% if byMinute.data[15].precipIntensity >= 0.4 %}
+      <i class="wi-rain-wind"></i>
+      <h5>Heavy Precipitation<h5>
+      {% elif byMinute.data[15].precipIntensity >= 0.1 %}
+      <i class="wi-rain"></i>
+      <h5>Moderate Precipitation</h5>
+      {% elif byMinute.data[15].precipIntensity >= 0.017 %}
+      <i class="wi-sprinkle"></i>
+      <h5>Light Precipitation</h5>
+      {% elif byMinute.data[15].precipIntensity >= 0.002 %}
+      <i class="wi-sprinkles"></i>
+      <h5>Very Light Precipitation</h5>
+      {% else %}
+      <i class="wi-cloud"></i>
+      <h5>No Precipitation</h5>
+      {% endif %} </h1>
+      <p><small>Precipitation Probability: {{byMinute.data[15].precipProbability}}</small></p>
+      <p><small>Precipitation Intensity: {{byMinute.data[15].precipIntensity}}</small></p> 
   </div>
   <div class="col-md-2 card">
-      <h5 class="forecastDate">Tuesday</h5>
-      <canvas id="{{day.data[4].icon}}" width="50" height="50"></canvas>
-      <p><strong>{{day.data[4].summary}}</strong></p>
-      <p><strong>High: {{day.data[4].temperatureMax}}</strong></p>
-      <p><strong>Low: {{day.data[4].temperatureMin}}</strong></p>
+      <h5 class="forecastDate">In 30 Minutes</h5>
+      <h1 class="forecastIcon">
+      {% if byMinute.data[30].precipIntensity >= 0.4 %}
+      <i class="wi-rain-wind"></i>
+      <h5>Heavy Precipitation<h5>
+      {% elif byMinute.data[30].precipIntensity >= 0.1 %}
+      <i class="wi-rain"></i>
+      <h5>Moderate Precipitation</h5>
+      {% elif byMinute.data[30].precipIntensity >= 0.017 %}
+      <i class="wi-sprinkle"></i>
+      <h5>Light Precipitation</h5>
+      {% elif byMinute.data[30].precipIntensity >= 0.002 %}
+      <i class="wi-sprinkles"></i>
+      <h5>Very Light Precipitation</h5>
+      {% else %}
+      <i class="wi-cloud"></i>
+      <h5>No Precipitation</h5>
+      {% endif %} </h1>
+      <p><small>Precipitation Probability: {{byMinute.data[30].precipProbability}}</small></p>
+      <p><small>Precipitation Intensity: {{byMinute.data[30].precipIntensity}}</small></p>
   </div>
   <div class="col-md-2 card">
-      <h5 class="forecastDate">Wednesday</h5>
-      <canvas id="{{day.data[6].icon}}" width="50" height="50"></canvas>
-      <p><strong>{{day.data[6].summary}}</strong></p>
-      <p><strong>High: {{day.data[6].temperatureMax}}</strong></p>
-      <p><strong>Low: {{day.data[6].temperatureMin}}</strong></p>
+      <h5 class="forecastDate">In 45 Minutes</h5>
+      <h1 class="forecastIcon">
+      {% if byMinute.data[45].precipIntensity >= 0.4 %}
+      <i class="wi-rain-wind"></i>
+      <h5>Heavy Precipitation<h5>
+      {% elif byMinute.data[45].precipIntensity >= 0.1 %}
+      <i class="wi-rain"></i>
+      <h5>Moderate Precipitation</h5>
+      {% elif byMinute.data[45].precipIntensity >= 0.017 %}
+      <i class="wi-sprinkle"></i>
+      <h5>Light Precipitation</h5>
+      {% elif byMinute.data[45].precipIntensity >= 0.002 %}
+      <i class="wi-sprinkles"></i>
+      <h5>Very Light Precipitation</h5>
+      {% else %}
+      <i class="wi-cloud"></i>
+      <h5>No Precipitation</h5>
+      {% endif %} </h1>
+      <p><small>Precipitation Probability: {{byMinute.data[45].precipProbability}}</small></p>
+      <p><small>Precipitation Intensity: {{byMinute.data[45].precipIntensity}}</small></p>
+  </div>
+</div>
+
+<!-- ////////////  Hourly Section /////////////// -->
+
+<div class="row">
+
+  <h4>Hourly</h4>
+
+  <div class="col-md-2 card two">
+    <h5 class="forecastDate">In 1 Hour</h5>
+    <h1 class="forecastIcon">
+    {% if byHour.data[1].icon == "clear-day" %}
+      <i class="wi-day-sunny"></i>
+    {% elif byHour.data[1].icon == "rain" %}
+      <i class="wi-rain"></i>
+    {% elif byHour.data[1].icon == "snow" %}
+      <i class="wi-snow"></i>
+    {% elif byHour.data[1].icon == "sleet" %}
+      <i class="wi-rain-mix"></i>
+    {% elif byHour.data[1].icon == "wind" %}
+      <i class="wi-strong-wind"></i>
+    {% elif byHour.data[1].icon == "fog" %}
+      <i class="wi-fog"></i>
+    {% elif byHour.data[1].icon == "cloudy" %}
+      <i class="wi-cloudy"></i>
+    {% elif byHour.data[1].icon == "partly-cloudy-day" %}
+      <i class="wi-day-cloudy"></i>
+    {% else %}
+      <i class="wi-cloud"></i>
+    {% endif %} </h1>
+    <h5>{{byHour.data[1].summary}}</h5><br>
+    <p><strong><i class="wi-thermometer"></i> Temperature: {{byHour.data[1].temperature| int()}} <i class="wi-fahrenheit"></i></strong></p>
+    <p><strong><i class="wi-windy"></i> Wind: {{byHour.data[1].windspeed| int()}} mph</strong></p>
+    <p><strong><i class="wi-sprinkles"></i> Humidity: {{byHour.data[1].humidity * 100}}%</strong></p>
+  </div>
+
+  <div class="col-md-2 card two">
+    <h5 class="forecastDate">In 2 Hours</h5>
+    <h1 class="forecastIcon">
+    {% if byHour.data[2].icon == "clear-day" %}
+      <i class="wi-day-sunny"></i>
+    {% elif byHour.data[2].icon == "rain" %}
+      <i class="wi-rain"></i>
+    {% elif byHour.data[2].icon == "snow" %}
+      <i class="wi-snow"></i>
+    {% elif byHour.data[2].icon == "sleet" %}
+      <i class="wi-rain-mix"></i>
+    {% elif byHour.data[2].icon == "wind" %}
+      <i class="wi-strong-wind"></i>
+    {% elif byHour.data[2].icon == "fog" %}
+      <i class="wi-fog"></i>
+    {% elif byHour.data[2].icon == "cloudy" %}
+      <i class="wi-cloudy"></i>
+    {% elif byHour.data[2].icon == "partly-cloudy-day" %}
+      <i class="wi-day-cloudy"></i>
+    {% else %}
+      <i class="wi-cloud"></i>
+    {% endif %} </h1>
+    <h5>{{byHour.data[2].summary}}</h5><br>
+    <p><strong><i class="wi-thermometer"></i> Temperature: {{byHour.data[2].temperature| int()}}<i class="wi-fahrenheit"></i></strong></p>
+    <p><strong><i class="wi-windy"></i> Wind: {{byHour.data[2].windspeed| int()}} mph</strong></p>
+    <p><strong><i class="wi-sprinkles"></i> Humidity: {{byHour.data[2].humidity * 100}}%</strong></p>
+  </div>
+
+  <div class="col-md-2 card two">
+    <h5 class="forecastDate">In 3 Hours</h5>
+    <h1 class="forecastIcon">
+    {% if byHour.data[3].icon == "clear-day" %}
+      <i class="wi-day-sunny"></i>
+    {% elif byHour.data[3].icon == "rain" %}
+      <i class="wi-rain"></i>
+    {% elif byHour.data[3].icon == "snow" %}
+      <i class="wi-snow"></i>
+    {% elif byHour.data[3].icon == "sleet" %}
+      <i class="wi-rain-mix"></i>
+    {% elif byHour.data[3].icon == "wind" %}
+      <i class="wi-strong-wind"></i>
+    {% elif byHour.data[3].icon == "fog" %}
+      <i class="wi-fog"></i>
+    {% elif byHour.data[3].icon == "cloudy" %}
+      <i class="wi-cloudy"></i>
+    {% elif byHour.data[3].icon == "partly-cloudy-day" %}
+      <i class="wi-day-cloudy"></i>
+    {% else %}
+      <i class="wi-cloud"></i>
+    {% endif %} </h1>
+    <h5>{{byHour.data[3].summary}}</h5><br>
+    <p><strong><i class="wi-thermometer"></i> Temperature: {{byHour.data[3].temperature| int()}}<i class="wi-fahrenheit"></i></strong></p>
+    <p><strong><i class="wi-windy"></i> Wind: {{byHour.data[3].windspeed| int()}} mph</strong></p>
+    <p><strong><i class="wi-sprinkles"></i> Humidity: {{byHour.data[2].humidity * 100}}%</strong></p>
+  </div>
+
+  <div class="col-md-2 card two">
+    <h5 class="forecastDate">In 6 Hours</h5>
+    <h1 class="forecastIcon">
+    {% if byHour.data[6].icon == "clear-day" %}
+      <i class="wi-day-sunny"></i>
+    {% elif byHour.data[6].icon == "rain" %}
+      <i class="wi-rain"></i>
+    {% elif byHour.data[6].icon == "snow" %}
+      <i class="wi-snow"></i>
+    {% elif byHour.data[6].icon == "sleet" %}
+      <i class="wi-rain-mix"></i>
+    {% elif byHour.data[6].icon == "wind" %}
+      <i class="wi-strong-wind"></i>
+    {% elif byHour.data[6].icon == "fog" %}
+      <i class="wi-fog"></i>
+    {% elif byHour.data[6].icon == "cloudy" %}
+      <i class="wi-cloudy"></i>
+    {% elif byHour.data[6].icon == "partly-cloudy-day" %}
+      <i class="wi-day-cloudy"></i>
+    {% else %}
+      <i class="wi-cloud"></i>
+    {% endif %} </h1>
+    <h5>{{byHour.data[6].summary}}</h5><br>
+    <p><strong><i class="wi-thermometer"></i> Temperature: {{byHour.data[6].temperature| int()}}<i class="wi-fahrenheit"></i></strong></p>
+    <p><strong><i class="wi-windy"></i> Wind: {{byHour.data[6].windspeed| int()}} mph</strong></p>
+    <p><strong><i class="wi-sprinkles"></i> Humidity: {{byHour.data[2].humidity * 100}}%</strong></p>
+  </div>
+
+  <div class="col-md-2 card two">
+    <h5 class="forecastDate">In 12 Hours</h5>
+    <h1 class="forecastIcon">
+    {% if byHour.data[12].icon == "clear-day" %}
+      <i class="wi-day-sunny"></i>
+    {% elif byHour.data[12].icon == "rain" %}
+      <i class="wi-rain"></i>
+    {% elif byHour.data[12].icon == "snow" %}
+      <i class="wi-snow"></i>
+    {% elif byHour.data[12].icon == "sleet" %}
+      <i class="wi-rain-mix"></i>
+    {% elif byHour.data[12].icon == "wind" %}
+      <i class="wi-strong-wind"></i>
+    {% elif byHour.data[12].icon == "fog" %}
+      <i class="wi-fog"></i>
+    {% elif byHour.data[12].icon == "cloudy" %}
+      <i class="wi-cloudy"></i>
+    {% elif byHour.data[12].icon == "partly-cloudy-day" %}
+      <i class="wi-day-cloudy"></i>
+    {% else %}
+      <i class="wi-cloud"></i>
+    {% endif %} </h1>
+    <h5>{{byHour.data[12].summary}}</h5><br>
+    <p><strong><i class="wi-thermometer"></i> Temperature: {{byHour.data[12].temperature| int()}}<i class="wi-fahrenheit"></i></strong></p>
+    <p><strong><i class="wi-windy"></i> Wind: {{byHour.data[12].windspeed| int()}} mph</strong></p>
+    <p><strong><i class="wi-sprinkles"></i> Humidity: {{byHour.data[2].humidity * 100}}%</strong></p>
+
   </div>
 
 </div>
+<hr>
+<p><a href="http://opensource.org/licenses/MIT">Code licensed under MIT License 2014</a> - Matt Moody<p>
+<hr>
+
+<script>
+      var icons = new Skycons(),
+          list  = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+
+      for(i = list.length; i--; )
+        icons.set(list[i], list[i]);
+
+      icons.play();
+  </script>
 {% endblock %}

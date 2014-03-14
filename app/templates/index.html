@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{title}} - Salina Weather</title>
+		<title>{{title}} - Local Weather</title>
 		<link href="/static/css/bootstrap.min.css" rel="stylesheet">
 		<link href="/static/css/styles.css" rel="stylesheet">
     <link href="/static/css/weather-icons.min.css" rel="stylesheet">
@@ -16,19 +16,6 @@
 		  {% block content %}{% endblock %}
 		</div>
 
-	<script>
-      var icons = new Skycons(),
-          list  = [
-            "clear-day", "clear-night", "partly-cloudy-day",
-            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
-            "fog"
-          ],
-          i;
-
-      for(i = list.length; i--; )
-        icons.set(list[i], list[i]);
-
-      icons.play();
-	</script>
+	
 	</body>
 </html>

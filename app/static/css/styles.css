@@ -10,17 +10,25 @@ a.navbar-brand {
 
 .col-md-2.card {
     background: #ffffff;
-    height: 250px;
-    margin-left: 25px;
+    height: 200px;
+    margin-left: 30px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; /* future proofing */
     -khtml-border-radius: 10px; /* for old Konqueror browsers */
     margin-top: 10px;
-    padding-left: 10px;
+    padding-left: 20px;
     -moz-box-shadow:    0 1px 1px #ccc;
     -webkit-box-shadow: 0 1px 1px #ccc;
     box-shadow:         0 1px 1px #ccc;
+}
+
+.col-md-2.card h5 {
+    text-align: center;
+}
+
+.col-md-2.card.two {
+    height: 250px;
 }
 
 body {

@@ -1,5 +1,20 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:100,400);
 
+body {
+	background: whitesmoke;
+}
+
+.jumbotron {
+	background-color: #ffffff;
+	-moz-box-shadow:    0 1px 1px #ccc;
+		-webkit-box-shadow: 0 1px 1px #ccc;
+		box-shadow:         0 1px 1px #ccc;
+}
+
+p {
+	padding-top: 0;
+}
+
 a.navbar-brand {
 	font-family: 'Lato', sans-serif;
 }
@@ -7,6 +22,9 @@ a.navbar-brand {
 .navbar-default {
 	background-color: #ffffff;
 }
+
+
+/* forecast cards */
 
 .col-md-2.card {
     background: #ffffff;
@@ -31,21 +49,6 @@ a.navbar-brand {
     height: 250px;
 }
 
-body {
-	background: whitesmoke;
-}
-
-.jumbotron {
-	background-color: #ffffff;
-	-moz-box-shadow:    0 1px 1px #ccc;
-    -webkit-box-shadow: 0 1px 1px #ccc;
-    box-shadow:         0 1px 1px #ccc;
-}
-
-p {
-	padding-top: 0;
-}
-
 h1.forecastIcon {
 	text-align: center;
 }
@@ -53,4 +56,3 @@ h1.forecastIcon {
 h5.forecastDate {
 	text-align: center;
 }
-
